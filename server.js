@@ -1,19 +1,25 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const bcrypt = require('bcrypt-nodejs');
+const cors = require('cors');
 
 const app = express();
+
+app.use(bodyParser.json());
+app.use(cors());
+
 const database = {
     users: [
         {
             id: '123',
             name: 'Pablo',
             email: 'pablo@gmail.com',
+            password: 'oi123',
             entries: 0,
             joined: new Date()
         }
     ]
 };
-app.use(bodyParser.json());
 
 const verifyUserId = (id) => {
     let userFound = database.users.find(user => {
@@ -23,7 +29,7 @@ const verifyUserId = (id) => {
 }
 
 app.get('/', (req, res) => {
-    res.send('this is working');
+    res.send(database.users);
 });
 
 app.post('/signin', (req, res) => {
