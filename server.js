@@ -10,10 +10,10 @@ const signin = require('./controllers/signin');
 const profile = require('./controllers/profile');
 
 const db = knex({
-    client: 'pg',
+    client: 'pg', //postgreSQL
     connection: {
         host: '127.0.0.1',
-        user: 'myyser',
+        user: 'myuser',
         password: 'mypass',
         database: 'smart-brain'
     }
